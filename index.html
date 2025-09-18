@@ -5,114 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOS Mechanics – Ultra Premium Mobile Garage</title>
 <style>
-body { margin:0; font-family:'Helvetica Neue', Arial, sans-serif; background:#111; color:#eee; line-height:1.5; }
-header { background:#000; color:#FFD700; text-align:center; padding:1rem; font-size:1.5rem; font-weight:bold; letter-spacing:1px; }
-h2 { color:#FFD700; margin-bottom:1rem; font-size:1.4rem; text-align:center; }
-section { padding:1rem 0; max-width:1000px; margin:auto; }
-.card { background:#1a1a1a; border-radius:12px; padding:1rem; margin:0.5rem; box-shadow:0 0 15px rgba(255,215,0,0.2); cursor:pointer; transition:transform 0.2s; text-align:center; }
+body { margin:0; font-family:'Helvetica Neue', Arial, sans-serif; background:#f9f9f9; color:#111; line-height:1.5; }
+header { background:#075e54; color:#fff; text-align:center; padding:1rem; font-size:1.5rem; font-weight:bold; letter-spacing:1px; }
+h1, h2, h3 { margin:0.5rem 0; }
+h1 { font-size:1.6rem; }
+h2 { color:#075e54; font-size:1.3rem; margin-bottom:0.5rem; }
+section { padding:1rem; max-width:900px; margin:auto; }
+.cards-container { display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; }
+.card { background:#fff; border-radius:12px; padding:1rem; flex:1 1 40%; box-shadow:0 1px 4px rgba(0,0,0,0.1); cursor:pointer; transition:transform 0.2s; }
 .card:hover { transform:scale(1.02); }
-.cards-container { display:flex; flex-wrap:wrap; justify-content:center; }
+.toggle-btn { background:#075e54; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; margin-top:0.5rem; display:block; width:150px; text-align:center; margin:auto; }
 
 /* Modal */
 .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:3000; justify-content:center; align-items:center; padding:1rem; }
-.modal-content { background:linear-gradient(145deg,#111,#1c1c1c); padding:2rem; border-radius:15px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 40px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.2) inset; border:2px solid #FFD700; position:relative; }
-.modal-close { position:absolute; top:15px; right:15px; background:#FFD700; color:#000; border:none; padding:5px 10px; font-size:1rem; cursor:pointer; border-radius:8px; font-weight:bold; }
-input, select, textarea, button { width:100%; padding:0.6rem; margin-bottom:0.6rem; border-radius:8px; border:none; font-size:1rem; }
-input, select, textarea { background:#222; color:#eee; }
-button { background:#FFD700; color:#000; font-weight:bold; cursor:pointer; transition:transform 0.2s; }
-button:hover { transform:scale(1.05); box-shadow:0 0 20px #FFD700,0 0 40px #FFD700 inset; }
+.modal-content { background:#fff; padding:2rem; border-radius:15px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 40px rgba(0,0,0,0.3); position:relative; }
+.modal-close { position:absolute; top:15px; right:15px; background:#075e54; color:#fff; border:none; padding:5px 10px; font-size:1rem; cursor:pointer; border-radius:8px; font-weight:bold; }
+input, select, textarea, button { width:100%; padding:0.6rem; margin-bottom:0.6rem; border-radius:8px; border:1px solid #ccc; font-size:1rem; }
+input, select, textarea { background:#f1f1f1; color:#111; }
+button { background:#25d366; color:#fff; font-weight:bold; cursor:pointer; transition:transform 0.2s; }
+button:hover { transform:scale(1.05); }
 
-/* Loyalty circles */
-.loyalty-circles { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:0.5rem; }
-.loyalty-circles div { width:50px; height:50px; border:2px solid #FFD700; border-radius:50%; }
+/* Footer */
+footer { background:#075e54; color:#fff; text-align:center; padding:1rem; margin-top:2rem; font-size:0.9rem; }
 
 /* Mobile adjustments */
-@media(max-width:600px){ .card{width:90%; margin:0.5rem 0;} }
+@media(max-width:600px){ .card{flex:1 1 90%;} }
 </style>
 </head>
 <body>
 
-<header>SOS Mechanics – Ultra Premium Mobile Care</header>
+<header>SOS Mechanics – Premium Mobile Garage</header>
 
-<!-- Services -->
-<section class="services">
-<h2>Our Services</h2>
-<div class="cards-container">
-  <div class="card" onclick="showInfoModal('Oil & Filter Service')">Oil & Filter Service – £100</div>
-  <div class="card" onclick="showInfoModal('Brake Pads Replacement')">Brake Pads Replacement – £120</div>
-  <div class="card" onclick="showInfoModal('Battery Replacement')">Battery Replacement – £150</div>
-  <div class="card" onclick="showInfoModal('A/C Re-Gas')">A/C Re-Gas – £75</div>
-</div>
+<section class="hero" style="text-align:center;">
+  <h1>Fast, Reliable Mobile Car Service</h1>
+  <p>From oil changes to premium packages, we bring professional garage care straight to your door.</p>
+  <button onclick="openFormModal()">Book Your Service</button>
 </section>
 
-<!-- Bundles -->
-<section class="bundles">
-<h2>Premium Bundles</h2>
-<div class="cards-container">
-  <div class="card" onclick="showInfoModal('Essential Care Bundle')">Essential Care Bundle – £260</div>
-  <div class="card" onclick="showInfoModal('Complete Health Package')">Complete Health Package – £450</div>
+<!-- Services Preview -->
+<section>
+<h2>Services</h2>
+<p>Essential maintenance and high-profit add-ons.</p>
+<div class="cards-container" id="servicesContainer">
+  <div class="more-items" style="display:none; flex-wrap:wrap; gap:0.5rem;">
+    <div class="card" onclick="showInfoModal('Oil & Filter Service')">Oil & Filter – £100</div>
+    <div class="card" onclick="showInfoModal('Brake Pads Replacement')">Brake Pads – £120</div>
+    <div class="card" onclick="showInfoModal('Battery Replacement')">Battery – £150</div>
+    <div class="card" onclick="showInfoModal('A/C Re-Gas')">A/C Re-Gas – £75</div>
+    <div class="card" onclick="showInfoModal('Engine Diagnostic Scan')">Engine Diagnostic Scan – £60</div>
+    <div class="card" onclick="showInfoModal('Oil Top-Up Service')">Oil Top-Up – £35</div>
+    <div class="card" onclick="showInfoModal('Brake Fluid Flush')">Brake Fluid Flush – £45</div>
+  </div>
 </div>
+<button class="toggle-btn" onclick="toggleSection('servicesContainer')">Show More ▼</button>
 </section>
 
-<!-- High-Profit Add-Ons -->
-<section class="addons">
-<h2>High-Profit Add-Ons</h2>
-<div class="cards-container">
-  <div class="card" onclick="showInfoModal('Engine Diagnostic Scan')">Engine Diagnostic Scan – £60</div>
-  <div class="card" onclick="showInfoModal('Battery Health Check & Replacement')">Battery Health Check & Replacement – £80</div>
-  <div class="card" onclick="showInfoModal('Oil Top-Up Service')">Oil Top-Up Service – £35</div>
-  <div class="card" onclick="showInfoModal('Brake Fluid Flush')">Brake Fluid Flush – £45</div>
-  <div class="card" onclick="showInfoModal('Coolant Flush & Top-Up')">Coolant Flush & Top-Up – £50</div>
-  <div class="card" onclick="showInfoModal('A/C Performance Check')">A/C Performance Check – £40</div>
-  <div class="card" onclick="showInfoModal('Cabin Filter Replacement')">Cabin Filter Replacement – £30</div>
-  <div class="card" onclick="showInfoModal('Engine Air Filter Replacement')">Engine Air Filter Replacement – £30</div>
-  <div class="card" onclick="showInfoModal('Fuel Injector Cleaning')">Fuel Injector Cleaning – £80</div>
-  <div class="card" onclick="showInfoModal('Spark Plug Replacement')">Spark Plug Replacement – £50</div>
-  <div class="card" onclick="showInfoModal('Timing Belt Inspection & Replacement')">Timing Belt Inspection & Replacement – £150</div>
-  <div class="card" onclick="showInfoModal('Glow Plug Replacement (Diesel)')">Glow Plug Replacement (Diesel) – £60</div>
-  <div class="card" onclick="showInfoModal('Transmission Fluid Flush')">Transmission Fluid Flush – £80</div>
-  <div class="card" onclick="showInfoModal('Differential Oil Change')">Differential Oil Change – £65</div>
-  <div class="card" onclick="showInfoModal('Power Steering Fluid Service')">Power Steering Fluid Service – £45</div>
-  <div class="card" onclick="showInfoModal('Brake Pad Check & Replacement')">Brake Pad Check & Replacement – £120</div>
-  <div class="card" onclick="showInfoModal('Headlight Restoration')">Headlight Restoration – £40</div>
-  <div class="card" onclick="showInfoModal('Fog Light / Bulb Replacement')">Fog Light / Bulb Replacement – £25</div>
-  <div class="card" onclick="showInfoModal('Wiper Blade Replacement')">Wiper Blade Replacement – £20</div>
-  <div class="card" onclick="showInfoModal('Windshield Treatment')">Windshield Treatment – £30</div>
-  <div class="card" onclick="showInfoModal('Premium Car Wash & Interior Detailing')">Premium Car Wash & Interior Detailing – £70</div>
-  <div class="card" onclick="showInfoModal('Leather Conditioning')">Leather Conditioning – £50</div>
-  <div class="card" onclick="showInfoModal('Paint Protection Coating')">Paint Protection Coating – £120</div>
-  <div class="card" onclick="showInfoModal('Engine Bay Cleaning')">Engine Bay Cleaning – £50</div>
-  <div class="card" onclick="showInfoModal('Battery Terminal Cleaning')">Battery Terminal Cleaning – £20</div>
-  <div class="card" onclick="showInfoModal('Exhaust System Inspection')">Exhaust System Inspection – £40</div>
-  <div class="card" onclick="showInfoModal('Fluid Top-Up Service')">Fluid Top-Up Service – £25</div>
-  <div class="card" onclick="showInfoModal('Interior Odour Removal / Ozone Treatment')">Interior Odour Removal / Ozone Treatment – £50</div>
-  <div class="card" onclick="showInfoModal('Diagnostics & ECU Reset')">Diagnostics & ECU Reset – £60</div>
-  <div class="card" onclick="showInfoModal('Accessory Fitment')">Accessory Fitment – £40</div>
+<!-- Bundles Preview -->
+<section>
+<h2>Bundles & Packages</h2>
+<p>Our popular packages give comprehensive coverage and peace of mind.</p>
+<div class="cards-container" id="bundlesContainer">
+  <div class="more-items" style="display:none; flex-wrap:wrap; gap:0.5rem;">
+    <div class="card" onclick="showInfoModal('Essential Care Bundle')">Essential Care Bundle – £260</div>
+    <div class="card" onclick="showInfoModal('Complete Health Package')">Complete Health Package – £450</div>
+    <div class="card" onclick="showInfoModal('Monthly Essential Plan')">Monthly Essential Plan – £29/mo</div>
+    <div class="card" onclick="showInfoModal('Premium Care Plan')">Premium Care Plan – £49/mo</div>
+    <div class="card" onclick="showInfoModal('Diagnostics & ECU Reset')">Diagnostics & ECU Reset – £60</div>
+    <div class="card" onclick="showInfoModal('Paint Protection Coating')">Paint Protection Coating – £120</div>
+    <div class="card" onclick="showInfoModal('Premium Car Wash & Detailing')">Premium Car Wash & Detailing – £70</div>
+  </div>
 </div>
+<button class="toggle-btn" onclick="toggleSection('bundlesContainer')">Show More ▼</button>
 </section>
 
-<!-- Subscriptions -->
-<section class="subscribe">
-<h2>Maintenance Subscriptions</h2>
-<div class="cards-container">
-  <div class="card" onclick="showInfoModal('Monthly Essential Plan')">Monthly Essential Plan – £29/mo</div>
-  <div class="card" onclick="showInfoModal('Premium Care Plan')">Premium Care Plan – £49/mo</div>
-</div>
-</section>
-
-<!-- Loyalty -->
-<section class="loyalty">
-<h2>Loyalty Rewards</h2>
-<p style="text-align:center;">Collect 6 stamps, get your next service free (excluding parts).</p>
-<div class="loyalty-circles"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<!-- Call to Action -->
+<section style="text-align:center; margin:2rem 0;">
+  <p>Ready to book? Fill your details and we’ll handle the rest.</p>
+  <button onclick="openFormModal()">Book via WhatsApp</button>
 </section>
 
 <!-- Footer -->
-<footer style="background:#000; color:#bbb; text-align:center; padding:1rem; margin-top:2rem;">
+<footer>
 <p><strong>SOS Mechanics Ltd.</strong> | Mobile Garage Services | Registered in England & Wales</p>
 <p>Address: 123 Premium Garage Lane, London, UK | Company Reg: 12345678 | VAT: GB123456789</p>
-<p>Contact: <a href="mailto:mobile@sosmechanics.co.uk" style="color:#FFD700;">mobile@sosmechanics.co.uk</a> | <a href="https://wa.me/447405937104" target="_blank" style="color:#FFD700;">WhatsApp Chat</a></p>
-<p><a href="#" style="color:#FFD700;">Terms & Conditions</a> | <a href="#" style="color:#FFD700;">Privacy Policy</a></p>
+<p>Contact: <a href="mailto:mobile@sosmechanics.co.uk" style="color:#fff;">mobile@sosmechanics.co.uk</a> | <a href="https://wa.me/447405937104" target="_blank" style="color:#fff;">WhatsApp Chat</a></p>
+<p><a href="#" style="color:#fff;">Terms & Conditions</a> | <a href="#" style="color:#fff;">Privacy Policy</a></p>
 </footer>
 
 <!-- Modal -->
@@ -125,49 +102,25 @@ button:hover { transform:scale(1.05); box-shadow:0 0 20px #FFD700,0 0 40px #FFD7
 </div>
 
 <script>
-// Service Data with descriptions
+// Service Data
 const servicesData = {
-"Oil & Filter Service": {price:100, desc:"Full oil and filter change using premium engine oil for optimum performance."},
-"Brake Pads Replacement": {price:120, desc:"Replace worn brake pads with premium quality pads for safety and longevity."},
-"Battery Replacement": {price:150, desc:"Replace old or failing battery to prevent breakdowns."},
-"A/C Re-Gas": {price:75, desc:"Recharge air conditioning system for optimal cooling."},
-"Essential Care Bundle": {price:260, desc:"Oil & Filter Service + Brake Pads Replacement in one premium package."},
-"Complete Health Package": {price:450, desc:"All main services included for complete vehicle health."},
-"Engine Diagnostic Scan": {price:60, desc:"Full electronic check to detect hidden engine issues."},
-"Battery Health Check & Replacement": {price:80, desc:"Check and replace battery if needed for reliable starts."},
-"Oil Top-Up Service": {price:35, desc:"Quick top-up to maintain optimum engine oil level."},
+"Oil & Filter Service": {price:100, desc:"Premium oil & filter change for optimal engine performance."},
+"Brake Pads Replacement": {price:120, desc:"Replace worn brake pads for safety & reliability."},
+"Battery Replacement": {price:150, desc:"Replace old battery to ensure reliable starts."},
+"A/C Re-Gas": {price:75, desc:"Recharge your air conditioning system for comfort."},
+"Engine Diagnostic Scan": {price:60, desc:"Full electronic scan to detect hidden issues."},
+"Oil Top-Up Service": {price:35, desc:"Quick top-up to maintain engine oil level."},
 "Brake Fluid Flush": {price:45, desc:"Replace old brake fluid for optimal braking."},
-"Coolant Flush & Top-Up": {price:50, desc:"Replace engine coolant to prevent overheating."},
-"A/C Performance Check": {price:40, desc:"Check efficiency of air conditioning system."},
-"Cabin Filter Replacement": {price:30, desc:"Replace interior air filter for cleaner cabin air."},
-"Engine Air Filter Replacement": {price:30, desc:"Replace engine air filter for better performance and economy."},
-"Fuel Injector Cleaning": {price:80, desc:"High-end cleaning for smoother engine operation."},
-"Spark Plug Replacement": {price:50, desc:"Replace spark plugs to maintain engine efficiency."},
-"Timing Belt Inspection & Replacement": {price:150, desc:"Check and replace timing belt to prevent engine failure."},
-"Glow Plug Replacement (Diesel)": {price:60, desc:"Replace diesel glow plugs for reliable starting."},
-"Transmission Fluid Flush": {price:80, desc:"Replace old transmission fluid for smooth gear shifts."},
-"Differential Oil Change": {price:65, desc:"Change differential oil for optimal drivetrain performance."},
-"Power Steering Fluid Service": {price:45, desc:"Flush and refill power steering fluid."},
-"Brake Pad Check & Replacement": {price:120, desc:"Comprehensive brake inspection with replacement if needed."},
-"Headlight Restoration": {price:40, desc:"Restore faded headlights for improved visibility."},
-"Fog Light / Bulb Replacement": {price:25, desc:"Replace faulty bulbs for safety."},
-"Wiper Blade Replacement": {price:20, desc:"Replace old wiper blades for clear vision."},
-"Windshield Treatment": {price:30, desc:"Protective treatment for windscreen longevity."},
-"Premium Car Wash & Interior Detailing": {price:70, desc:"Full exterior wash and premium interior detailing."},
-"Leather Conditioning": {price:50, desc:"Condition leather surfaces for luxury feel and protection."},
-"Paint Protection Coating": {price:120, desc:"Professional coating to protect paintwork."},
-"Engine Bay Cleaning": {price:50, desc:"Clean engine bay for better maintenance visibility."},
-"Battery Terminal Cleaning": {price:20, desc:"Clean battery terminals to prevent corrosion."},
-"Exhaust System Inspection": {price:40, desc:"Check exhaust for leaks and performance issues."},
-"Fluid Top-Up Service": {price:25, desc:"Top-up essential fluids to manufacturer spec."},
-"Interior Odour Removal / Ozone Treatment": {price:50, desc:"Remove bad odours using professional ozone treatment."},
-"Diagnostics & ECU Reset": {price:60, desc:"Perform full ECU reset and diagnostics."},
-"Accessory Fitment": {price:40, desc:"Fit customer accessories professionally."},
+"Essential Care Bundle": {price:260, desc:"Oil & Filter + Brake Pads Replacement combined."},
+"Complete Health Package": {price:450, desc:"All main services for full vehicle health."},
 "Monthly Essential Plan": {price:29, desc:"Monthly subscription covering essential services."},
-"Premium Care Plan": {price:49, desc:"Monthly subscription covering premium services."}
+"Premium Care Plan": {price:49, desc:"Monthly subscription covering premium services."},
+"Diagnostics & ECU Reset": {price:60, desc:"Full ECU reset and diagnostics."},
+"Paint Protection Coating": {price:120, desc:"Protect your paint with premium coating."},
+"Premium Car Wash & Detailing": {price:70, desc:"Full exterior wash and interior detailing."}
 };
 
-// Selected services array
+// Selected services
 let selectedServices = [];
 let formFilled = false;
 let formData = {};
@@ -190,6 +143,21 @@ function addService(service){
   if(!formFilled){ openFormModal(); }
 }
 
+// Toggle sections
+function toggleSection(containerId){
+  const container = document.getElementById(containerId);
+  const moreItems = container.querySelector('.more-items');
+  const btn = container.parentElement.querySelector('.toggle-btn');
+  
+  if(moreItems.style.display === 'none'){
+    moreItems.style.display = 'flex';
+    btn.innerText = "Show Less ▲";
+  } else {
+    moreItems.style.display = 'none';
+    btn.innerText = "Show More ▼";
+  }
+}
+
 // Open form modal
 function openFormModal(){
   const modalBody = document.getElementById('modalBody');
@@ -203,7 +171,6 @@ function openFormModal(){
   </form>`;
   document.getElementById('bookingModal').style.display='flex';
 
-  // Geolocation
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(async (pos)=>{
       const lat = pos.coords.latitude;
@@ -213,7 +180,6 @@ function openFormModal(){
       const address = await reverseGeocode(lat, lon);
       document.getElementById('clientLocation').value = address || `${lat},${lon}`;
     }, (err)=>{
-      console.error(err);
       document.getElementById('clientLocation').placeholder = "Enter location manually";
     });
   }
@@ -240,7 +206,7 @@ function submitForm(){
   openSummaryModal();
 }
 
-// Summary & WhatsApp
+// Booking summary
 function openSummaryModal(){
   const modalBody=document.getElementById('modalBody');
   modalBody.innerHTML=`<h3>Booking Summary</h3>
@@ -248,7 +214,7 @@ function openSummaryModal(){
     <button onclick="sendWhatsApp()">Send Booking via WhatsApp</button>`;
 }
 
-// Send WhatsApp
+// WhatsApp link
 function sendWhatsApp(){
   const number="447405937104";
   let message=`Hello SOS Mechanics,%0AName: ${formData.name}%0AContact: ${formData.contact}%0ACar: ${formData.car}%0ALocation: ${formData.location}%0AMap: https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lon}%0ASelected Services:%0A`;
