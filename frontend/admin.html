@@ -3,79 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOS Mechanics Admin Panel</title>
+<title>Admin Cockpit | SOS Mechanics</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
-  body { font-family:'Helvetica Neue',Arial,sans-serif; background:#111; color:#eee; margin:0; padding:0;}
-  h1 { text-align:center; color:#FFD700; margin-top:1rem;}
-  form { max-width:600px; margin:auto; padding:1rem; background:#1a1a1a; border-radius:10px;}
-  label { display:block; margin:1rem 0 0.5rem; }
-  input, textarea { width:100%; padding:0.5rem; border-radius:5px; border:none;}
-  button { margin-top:1rem; padding:0.7rem; background:#FFD700; color:#000; border:none; cursor:pointer; border-radius:5px; width:100%; font-weight:bold; }
+body { margin:0; font-family:Arial, sans-serif; background:#111; color:#fff; }
+h1,h2 { color:#FFD700; }
+#connectionStatus { padding:10px; text-align:center; background:#222; color:#FFD700; font-weight:bold; }
+#map { height:500px; margin:1rem 0; border:2px solid #333; }
+#controls { display:flex; gap:1rem; flex-wrap:wrap; padding:1rem; }
+#bookingsList { max-height:300px; overflow-y:auto; background:#1a1a1a; padding:1rem; border-radius:8px; margin-top:1rem; }
+button { cursor:pointer; padding:0.5rem 1rem; background:#FFD700; border:none; color:#000; font-weight:bold; border-radius:5px; }
+label { display:block; margin-top:0.5rem; }
+input { padding:0.25rem; border-radius:3px; border:none; margin-top:0.25rem; width:100%; }
 </style>
 </head>
 <body>
-<h1>Admin Panel</h1>
-<form id="adminForm">
-  <label>SEO Title</label>
-  <input type="text" id="seoTitle" required>
-  
-  <label>SEO Description</label>
-  <textarea id="seoDescription" rows="3" required></textarea>
-  
-  <label>SEO Keywords (comma separated)</label>
-  <input type="text" id="seoKeywords" required>
-  
-  <label>Structured Data (JSON)</label>
-  <textarea id="structuredData" rows="3" required></textarea>
-  
-  <label>Service Area Latitude</label>
-  <input type="number" step="any" id="serviceLat" required>
-  
-  <label>Service Area Longitude</label>
-  <input type="number" step="any" id="serviceLng" required>
-  
-  <label>Maximum Service Radius (miles)</label>
-  <input type="number" step="0.1" id="serviceRadius" required>
-  
-  <button type="submit">Save Settings</button>
-</form>
 
-<script>
-const form = document.getElementById('adminForm');
+<h1>Admin Cockpit – Flight Tower UI</h1>
+<div id="connectionStatus">Checking backend connection...</div>
 
-async function loadSettings(){
-  const res = await fetch('/api/admin');
-  const data = await res.json();
-  if(data){
-    document.getElementById('seoTitle').value = data.seo_title||'';
-    document.getElementById('seoDescription').value = data.seo_description||'';
-    document.getElementById('seoKeywords').value = data.seo_keywords||'';
-    document.getElementById('structuredData').value = JSON.stringify(data.structured_data||{});
-    document.getElementById('serviceLat').value = data.service_lat||'';
-    document.getElementById('serviceLng').value = data.service_lng||'';
-    document.getElementById('serviceRadius').value = data.service_radius||'';
-  }
-}
-loadSettings();
+<div id="controls">
+  <button id="resetDb">Reset & Seed DB</button>
+  <button id="loadBookings">Refresh Bookings</button>
+</div>
 
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const body = {
-    seo_title: document.getElementById('seoTitle').value,
-    seo_description: document.getElementById('seoDescription').value,
-    seo_keywords: document.getElementById('seoKeywords').value,
-    structured_data: JSON.parse(document.getElementById('structuredData').value),
-    service_lat: parseFloat(document.getElementById('serviceLat').value),
-    service_lng: parseFloat(document.getElementById('serviceLng').value),
-    service_radius: parseFloat(document.getElementById('serviceRadius').value)
-  };
-  const res = await fetch('/api/admin', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(body)
-  });
-  if(res.ok) alert('Settings saved!');
-});
-</script>
+<div id="map"></div>
+
+<div id="bookingsList"></div>
+
+<h2>Settings</h2>
+<div id="settingsPanel">
+  <label>Callout Fee (£)<input type="number" id="callout_fee"></label>
+  <label>Max Direct Booking Miles<input type="number" id="max_distance"></label>
+  <label>SEO Title<input type="text" id="seo_title"></label>
+  <label>SEO Meta Description<input type="text" id="seo_meta_description"></label>
+  <label>SEO Keywords<input type="text" id="seo_keywords"></label>
+  <button id="saveSettings">Save Settings</button>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="admin.js"></script>
+
 </body>
 </html>
