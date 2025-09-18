@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS Mechanics – Ultra Premium Mobile Garage</title>
+<style>
+body { margin:0; font-family:'Helvetica Neue', Arial, sans-serif; background:#111; color:#eee; line-height:1.5; }
+header { background:#000; color:#FFD700; text-align:center; padding:1rem; font-size:1.5rem; font-weight:bold; letter-spacing:1px; }
+h2 { color:#FFD700; margin-bottom:1rem; font-size:1.4rem; text-align:center; }
+section { padding:1rem 0; max-width:1000px; margin:auto; }
+.card { background:#1a1a1a; border-radius:12px; padding:1rem; margin:0.5rem; box-shadow:0 0 15px rgba(255,215,0,0.2); cursor:pointer; transition:transform 0.2s; }
+.card:hover { transform:scale(1.02); }
+.cards-container { display:flex; flex-wrap:wrap; justify-content:center; }
+
+/* Modal */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:3000; justify-content:center; align-items:center; padding:1rem; }
+.modal-content { background:linear-gradient(145deg,#111,#1c1c1c); padding:2rem; border-radius:15px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 40px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.2) inset; border:2px solid #FFD700; position:relative; }
+.modal-close { position:absolute; top:15px; right:15px; background:#FFD700; color:#000; border:none; padding:5px 10px; font-size:1rem; cursor:pointer; border-radius:8px; font-weight:bold; }
+input, select, textarea, button { width:100%; padding:0.6rem; margin-bottom:0.6rem; border-radius:8px; border:none; font-size:1rem; }
+input, select, textarea { background:#222; color:#eee; }
+button { background:#FFD700; color:#000; font-weight:bold; cursor:pointer; transition:transform 0.2s; }
+button:hover { transform:scale(1.05); box-shadow:0 0 20px #FFD700,0 0 40px #FFD700 inset; }
+
+/* Loyalty circles */
+.loyalty-circles { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:0.5rem; }
+.loyalty-circles div { width:50px; height:50px; border:2px solid #FFD700; border-radius:50%; }
+
+/* Mobile adjustments */
+@media(max-width:600px){ .card{width:90%; margin:0.5rem 0;} }
+</style>
+</head>
+<body>
+
+<header>SOS Mechanics – Ultra Premium Mobile Care</header>
+
+<!-- Services -->
+<section class="services">
+<h2>Our Services</h2>
+<div class="cards-container">
+  <div class="card" onclick="selectService('Oil & Filter Service')">Oil & Filter Service – £100</div>
+  <div class="card" onclick="selectService('Brake Pads Replacement')">Brake Pads Replacement – £120</div>
+  <div class="card" onclick="selectService('Battery Replacement')">Battery Replacement – £150</div>
+  <div class="card" onclick="selectService('A/C Re-Gas')">A/C Re-Gas – £75</div>
+</div>
+</section>
+
+<!-- Bundles -->
+<section class="bundles">
+<h2>Premium Bundles</h2>
+<div class="cards-container">
+  <div class="card" onclick="selectService('Essential Care Bundle')">Essential Care Bundle – £260</div>
+  <div class="card" onclick="selectService('Complete Health Package')">Complete Health Package – £450</div>
+</div>
+</section>
+
+<!-- High-Profit Add-Ons -->
+<section class="addons">
+<h2>High-Profit Add-Ons</h2>
+<div class="cards-container">
+  <div class="card" onclick="selectService('Engine Diagnostic Scan')">Engine Diagnostic Scan – £60</div>
+  <div class="card" onclick="selectService('Battery Health Check & Replacement')">Battery Health Check & Replacement – £80</div>
+  <div class="card" onclick="selectService('Oil Top-Up Service')">Oil Top-Up Service – £35</div>
+  <div class="card" onclick="selectService('Brake Fluid Flush')">Brake Fluid Flush – £45</div>
+  <div class="card" onclick="selectService('Coolant Flush & Top-Up')">Coolant Flush & Top-Up – £50</div>
+  <div class="card" onclick="selectService('A/C Performance Check')">A/C Performance Check – £40</div>
+  <div class="card" onclick="selectService('Cabin Filter Replacement')">Cabin Filter Replacement – £30</div>
+  <div class="card" onclick="selectService('Engine Air Filter Replacement')">Engine Air Filter Replacement – £30</div>
+  <div class="card" onclick="selectService('Fuel Injector Cleaning')">Fuel Injector Cleaning – £80</div>
+  <div class="card" onclick="selectService('Spark Plug Replacement')">Spark Plug Replacement – £50</div>
+  <div class="card" onclick="selectService('Timing Belt Inspection & Replacement')">Timing Belt Inspection & Replacement – £150</div>
+  <div class="card" onclick="selectService('Glow Plug Replacement (Diesel)')">Glow Plug Replacement (Diesel) – £60</div>
+  <div class="card" onclick="selectService('Transmission Fluid Flush')">Transmission Fluid Flush – £80</div>
+  <div class="card" onclick="selectService('Differential Oil Change')">Differential Oil Change – £65</div>
+  <div class="card" onclick="selectService('Power Steering Fluid Service')">Power Steering Fluid Service – £45</div>
+  <div class="card" onclick="selectService('Brake Pad Check & Replacement')">Brake Pad Check & Replacement – £120</div>
+  <div class="card" onclick="selectService('Headlight Restoration')">Headlight Restoration – £40</div>
+  <div class="card" onclick="selectService('Fog Light / Bulb Replacement')">Fog Light / Bulb Replacement – £25</div>
+  <div class="card" onclick="selectService('Wiper Blade Replacement')">Wiper Blade Replacement – £20</div>
+  <div class="card" onclick="selectService('Windshield Treatment')">Windshield Treatment – £30</div>
+  <div class="card" onclick="selectService('Premium Car Wash & Interior Detailing')">Premium Car Wash & Interior Detailing – £70</div>
+  <div class="card" onclick="selectService('Leather Conditioning')">Leather Conditioning – £50</div>
+  <div class="card" onclick="selectService('Paint Protection Coating')">Paint Protection Coating – £120</div>
+  <div class="card" onclick="selectService('Engine Bay Cleaning')">Engine Bay Cleaning – £50</div>
+  <div class="card" onclick="selectService('Battery Terminal Cleaning')">Battery Terminal Cleaning – £20</div>
+  <div class="card" onclick="selectService('Exhaust System Inspection')">Exhaust System Inspection – £40</div>
+  <div class="card" onclick="selectService('Fluid Top-Up Service')">Fluid Top-Up Service – £25</div>
+  <div class="card" onclick="selectService('Interior Odour Removal / Ozone Treatment')">Interior Odour Removal / Ozone Treatment – £50</div>
+  <div class="card" onclick="selectService('Diagnostics & ECU Reset')">Diagnostics & ECU Reset – £60</div>
+  <div class="card" onclick="selectService('Accessory Fitment')">Accessory Fitment – £40</div>
+</div>
+</section>
+
+<!-- Subscriptions -->
+<section class="subscribe">
+<h2>Maintenance Subscriptions</h2>
+<div class="cards-container">
+  <div class="card" onclick="selectService('Monthly Essential Plan')">Monthly Essential Plan – £29/mo</div>
+  <div class="card" onclick="selectService('Premium Care Plan')">Premium Care Plan – £49/mo</div>
+</div>
+</section>
+
+<!-- Loyalty -->
+<section class="loyalty">
+<h2>Loyalty Rewards</h2>
+<p style="text-align:center;">Collect 6 stamps, get your next service free (excluding parts).</p>
+<div class="loyalty-circles"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</section>
+
+<!-- Footer Industry Spec -->
+<footer style="background:#000; color:#bbb; text-align:center; padding:1rem; margin-top:2rem;">
+<p><strong>SOS Mechanics Ltd.</strong> | Mobile Garage Services | Registered in England & Wales</p>
+<p>Address: 123 Premium Garage Lane, London, UK | Company Reg: 12345678 | VAT: GB123456789</p>
+<p>Contact: <a href="mailto:mobile@sosmechanics.co.uk" style="color:#FFD700;">mobile@sosmechanics.co.uk</a> | <a href="https://wa.me/447405937104" target="_blank" style="color:#FFD700;">WhatsApp Chat</a></p>
+<p><a href="#" style="color:#FFD700;">Terms & Conditions</a> | <a href="#" style="color:#FFD700;">Privacy Policy</a></p>
+</footer>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">Book Your Service</h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Service & Pricing Details
+const servicesData = {
+"Oil & Filter Service": {price:100},
+"Brake Pads Replacement": {price:120},
+"Battery Replacement": {price:150},
+"A/C Re-Gas": {price:75},
+"Essential Care Bundle": {price:260},
+"Complete Health Package": {price:450},
+"Engine Diagnostic Scan": {price:60},
+"Battery Health Check & Replacement": {price:80},
+"Oil Top-Up Service": {price:35},
+"Brake Fluid Flush": {price:45},
+"Coolant Flush & Top-Up": {price:50},
+"A/C Performance Check": {price:40},
+"Cabin Filter Replacement": {price:30},
+"Engine Air Filter Replacement": {price:30},
+"Fuel Injector Cleaning": {price:80},
+"Spark Plug Replacement": {price:50},
+"Timing Belt Inspection & Replacement": {price:150},
+"Glow Plug Replacement (Diesel)": {price:60},
+"Transmission Fluid Flush": {price:80},
+"Differential Oil Change": {price:65},
+"Power Steering Fluid Service": {price:45},
+"Brake Pad Check & Replacement": {price:120},
+"Headlight Restoration": {price:40},
+"Fog Light / Bulb Replacement": {price:25},
+"Wiper Blade Replacement": {price:20},
+"Windshield Treatment": {price:30},
+"Premium Car Wash & Interior Detailing": {price:70},
+"Leather Conditioning": {price:50},
+"Paint Protection Coating": {price:120},
+"Engine Bay Cleaning": {price:50},
+"Battery Terminal Cleaning": {price:20},
+"Exhaust System Inspection": {price:40},
+"Fluid Top-Up Service": {price:25},
+"Interior Odour Removal / Ozone Treatment": {price:50},
+"Diagnostics & ECU Reset": {price:60},
+"Accessory Fitment": {price:40},
+"Monthly Essential Plan": {price:29},
+"Premium Care Plan": {price:49}
+};
+
+// Track form & selections
+let formFilled = false;
+let formData = {};
+let selectedServices = [];
+
+// Service selection
+function selectService(service){
+  if(!formFilled){
+    selectedServices.push(service);
+    openFormModal();
+  } else {
+    selectedServices.push(service);
+    openSummaryModal();
+  }
+}
+
+// Open Form Modal
+function openFormModal(){
+  const modalBody = document.getElementById('modalBody');
+  let html = `<form id="bookingForm">
+    <p>Please enter your details to book:</p>
+    <input type="text" id="clientName" placeholder="Name" required>
+    <input type="text" id="clientContact" placeholder="Phone or Email" required>
+    <input type="text" id="clientCar" placeholder="Car Make & Model" required>
+    <input type="text" id="clientReg" placeholder="Registration Number" required>
+    <input type="text" id="clientLocation" placeholder="Your Location / Lat,Lon" required>
+    <button type="submit">Submit & Continue</button>
+  </form>`;
+  modalBody.innerHTML = html;
+  document.getElementById('bookingModal').style.display='flex';
+
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    formData.name = document.getElementById('clientName').value;
+    formData.contact = document.getElementById('clientContact').value;
+    formData.car = document.getElementById('clientCar').value;
+    formData.reg = document.getElementById('clientReg').value;
+    formData.location = document.getElementById('clientLocation').value;
+    formFilled = true;
+    openSummaryModal();
+  });
+}
+
+// Open Summary Modal & WhatsApp Link
+function openSummaryModal(){
+  let total = 0;
+  let itemsList = '';
+  selectedServices.forEach(s=>{
+    itemsList += `- ${s} – £${servicesData[s].price}\n`;
+    total += servicesData[s].price;
+  });
+  const messageText = `*SOS Mechanics Booking*\nName: ${formData.name}\nContact: ${formData.contact}\nCar: ${formData.car}\nReg: ${formData.reg}\nServices:\n${itemsList}Total: £${total}\nLocation: ${formData.location}`;
+  const waLink = `https://wa.me/447405937104?text=${encodeURIComponent(messageText)}`;
+
+  const modalBody = document.getElementById('modalBody');
+  modalBody.innerHTML = `<p><strong>Selected Services:</strong></p><pre>${itemsList}</pre><p><strong>Total: £${total}</strong></p>
+  <button onclick="window.open('${waLink}','_blank')">Book Now via WhatsApp</button>`;
+  document.getElementById('bookingModal').style.display='flex';
+}
+
+// Close Modal
+function closeModal(){
+  document.getElementById('bookingModal').style.display='none';
+}
+</script>
+
+</body>
+</html>
