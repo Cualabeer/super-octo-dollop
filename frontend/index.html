@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS Mechanics – Ultra Premium Mobile Garage</title>
+<meta name="description" content="Premium mobile mechanic services in your area – car servicing, add-ons, maintenance packages, and bundles. Fast, reliable, and mobile.">
+<meta name="keywords" content="mobile mechanic, car service, oil change, battery replacement, brake service, maintenance, premium bundles, UK">
+<style>
+body { font-family:'Helvetica Neue',Arial,sans-serif; margin:0; padding:0; background:#111; color:#eee;}
+header {background:#000; color:#FFD700; padding:1rem; text-align:center; font-size:1.5rem; font-weight:bold; letter-spacing:1px;}
+section {padding:1rem; max-width:1200px; margin:auto;}
+h2 {color:#FFD700; margin:0.5rem 0;}
+.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem;}
+.card {background:#1a1a1a; border-radius:10px; padding:1rem; cursor:pointer; transition:0.2s; box-shadow:0 0 10px rgba(255,215,0,0.2);}
+.card:hover{transform:scale(1.02);}
+.collapsible {cursor:pointer; background:#222; padding:0.5rem 1rem; border:none; text-align:left; outline:none; font-size:1.1rem; color:#FFD700; margin-top:0.5rem; border-radius:5px;}
+.content {padding:0 1rem; display:none; overflow:hidden; background:#111; margin-bottom:0.5rem; border-radius:5px;}
+.cart-btn{position:fixed; right:20px; bottom:20px; background:#FFD700; color:#000; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.5rem; z-index:1000;}
+.cart-panel{position:fixed; top:0; right:-100%; width:80%; max-width:400px; height:100%; background:#222; color:#fff; padding:1rem; overflow-y:auto; transition:0.3s; z-index:2000;}
+.cart-panel.open{right:0;}
+.close-cart{position:absolute; top:10px; right:10px; background:#FFD700; border:none; padding:5px 10px; cursor:pointer; border-radius:5px;}
+footer{background:#000; color:#bbb; text-align:center; padding:1rem; margin-top:2rem;}
+footer a{color:#FFD700; text-decoration:none;}
+button.book-btn{width:100%;padding:0.8rem;background:#FFD700;color:#000;border:none;font-size:1rem;cursor:pointer;border-radius:5px;margin-top:0.5rem;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>SOS Mechanics – Ultra Premium Mobile Care</header>
+
+<section>
+<h2>Premium Enhancements</h2>
+<div class="grid" id="premiumCarousel">
+  <div class="card" onclick="selectService('Full Engine Detox',150)">Full Engine Detox – £150</div>
+  <div class="card" onclick="selectService('Interior Deep Clean',120)">Interior Deep Clean – £120</div>
+  <div class="card" onclick="selectService('Exterior Nano Polish',200)">Exterior Nano Polish – £200</div>
+</div>
+</section>
+
+<section>
+<h2>Maintained Services <button class="collapsible">Expand</button></h2>
+<div class="content grid">
+  <div class="card" onclick="selectService('Oil & Filter Service',85)">Oil & Filter Service – £85</div>
+  <div class="card" onclick="selectService('Brake Pads Replacement',120)">Brake Pads Replacement – £120</div>
+  <div class="card" onclick="selectService('Battery Replacement',150)">Battery Replacement – £150</div>
+  <div class="card" onclick="selectService('A/C Re-Gas',75)">A/C Re-Gas – £75</div>
+  <div class="card" onclick="selectService('Timing Belt Check',95)">Timing Belt Check – £95</div>
+  <div class="card" onclick="selectService('Clutch Inspection',110)">Clutch Inspection – £110</div>
+  <div class="card" onclick="selectService('Brake Fluid Change',65)">Brake Fluid Change – £65</div>
+  <div class="card" onclick="selectService('Suspension Check',90)">Suspension Check – £90</div>
+  <div class="card" onclick="selectService('Engine Diagnostic',80)">Engine Diagnostic – £80</div>
+</div>
+</section>
+
+<section>
+<h2>Bundles & Combos <button class="collapsible">Expand</button></h2>
+<div class="content grid">
+  <div class="card" onclick="selectBundle('Essential Care Bundle',260,['Oil & Filter Service','Brake Pads Replacement'])">Essential Care Bundle – £260</div>
+  <div class="card" onclick="selectBundle('Complete Health Package',450,['Oil & Filter Service','Brake Pads Replacement','Battery Replacement','A/C Re-Gas'])">Complete Health Package – £450</div>
+  <div class="card" onclick="selectBundle('Safety First Combo',310,['Brake Pads Replacement','Brake Fluid Change'])">Safety First Combo – £310</div>
+  <div class="card" onclick="selectBundle('Ultimate Engine Combo',500,['Oil & Filter Service','Timing Belt Check','Clutch Inspection'])">Ultimate Engine Combo – £500</div>
+  <div class="card" onclick="selectBundle('Air & Comfort Bundle',180,['A/C Re-Gas','Interior Deep Clean'])">Air & Comfort Bundle – £180</div>
+  <div class="card" onclick="selectBundle('Performance Package',400,['Engine Diagnostic','Suspension Check'])">Performance Package – £400</div>
+  <div class="card" onclick="selectBundle('Quick Fix Bundle',150,['Brake Fluid Change','Suspension Check'])">Quick Fix Bundle – £150</div>
+  <div class="card" onclick="selectBundle('Premium Maintenance',550,['Full Engine Detox','Oil & Filter Service','Battery Replacement'])">Premium Maintenance – £550</div>
+  <div class="card" onclick="selectBundle('Eco Saver Bundle',200,['Oil & Filter Service','A/C Re-Gas'])">Eco Saver Bundle – £200</div>
+</div>
+</section>
+
+<section>
+<h2>Add-On Boosters <button class="collapsible">Expand</button></h2>
+<div class="content">
+  <ul>
+    <li onclick="selectService('Windshield Chip Repair',40)">Windshield Chip Repair – £40</li>
+    <li onclick="selectService('Headlight Restoration',35)">Headlight Restoration – £35</li>
+    <li onclick="selectService('Oil Top-Up',25)">Oil Top-Up – £25</li>
+    <li onclick="selectService('Brake Light Replacement',20)">Brake Light Replacement – £20</li>
+    <li onclick="selectService('Tyre Pressure Check',10)">Tyre Pressure Check – £10</li>
+    <li onclick="selectService('Battery Terminal Clean',15)">Battery Terminal Clean – £15</li>
+    <li onclick="selectService('Windshield Wiper Change',18)">Windshield Wiper Change – £18</li>
+    <li onclick="selectService('A/C Filter Replacement',30)">A/C Filter Replacement – £30</li>
+    <li onclick="selectService('Fluid Top-Up Pack',35)">Fluid Top-Up Pack – £35</li>
+    <li onclick="selectService('Spark Plug Replacement',50)">Spark Plug Replacement – £50</li>
+    <li onclick="selectService('Cabin Filter Change',28)">Cabin Filter Change – £28</li>
+    <li onclick="selectService('Fuel System Clean',75)">Fuel System Clean – £75</li>
+    <li onclick="selectService('Brake Pad Wear Check',20)">Brake Pad Wear Check – £20</li>
+    <li onclick="selectService('Battery Health Test',25)">Battery Health Test – £25</li>
+    <li onclick="selectService('Engine Oil Flush',90)">Engine Oil Flush – £90</li>
+    <li onclick="selectService('Tyre Rotation Check',15)">Tyre Rotation Check – £15</li>
+    <li onclick="selectService('Coolant Top-Up',20)">Coolant Top-Up – £20</li>
+    <li onclick="selectService('Transmission Fluid Check',45)">Transmission Fluid Check – £45</li>
+    <li onclick="selectService('Brake Caliper Lubrication',25)">Brake Caliper Lubrication – £25</li>
+    <li onclick="selectService('Wheel Alignment Check',60)">Wheel Alignment Check – £60</li>
+    <li onclick="selectService('Exhaust System Check',35)">Exhaust System Check – £35</li>
+    <li onclick="selectService('Door Hinge Lubrication',15)">Door Hinge Lubrication – £15</li>
+    <li onclick="selectService('Fuel Cap Seal Replacement',20)">Fuel Cap Seal Replacement – £20</li>
+    <li onclick="selectService('Airbag System Check',50)">Airbag System Check – £50</li>
+    <li onclick="selectService('Steering Fluid Top-Up',20)">Steering Fluid Top-Up – £20</li>
+    <li onclick="selectService('Brake Line Inspection',30)">Brake Line Inspection – £30</li>
+    <li onclick="selectService('Engine Mount Check',40)">Engine Mount Check – £40</li>
+    <li onclick="selectService('Coolant System Flush',80)">Coolant System Flush – £80</li>
+    <li onclick="selectService('Battery Replacement Check',50)">Battery Replacement Check – £50</li>
+  </ul>
+</div>
+</section>
+
+<section>
+<h2>Maintenance Packages <button class="collapsible">Expand</button></h2>
+<div class="content grid">
+  <div class="card" onclick="selectService('Monthly Essential Plan',29)">Monthly Essential Plan – £29/mo</div>
+  <div class="card" onclick="selectService('Premium Care Plan',49)">Premium Care Plan – £49/mo</div>
+  <div class="card" onclick="selectService('Quarterly Health Check',85)">Quarterly Health Check – £85</div>
+  <div class="card" onclick="selectService('Biannual Engine Service',150)">Biannual Engine Service – £150</div>
+  <div class="card" onclick="selectService('Annual Full Service',250)">Annual Full Service – £250</div>
+  <div class="card" onclick="selectService('Winter Readiness Pack',70)">Winter Readiness Pack – £70</div>
+  <div class="card" onclick="selectService('Summer Air-Conditioning Pack',60)">Summer Air-Conditioning Pack – £60</div>
+  <div class="card" onclick="selectService('Brake & Safety Package',120)">Brake & Safety Package – £120</div>
+  <div class="card" onclick="selectService('Engine Performance Tune',180)">Engine Performance Tune – £180</div>
+</div>
+</section>
+
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+<div class="cart-panel" id="cartPanel">
+<button class="close-cart" onclick="toggleCart()">✕</button>
+<h2>Your Selection</h2>
+<ul id="cartItems"></ul>
+<p><strong>Total: £<span id="cartTotal">0</span></strong></p>
+<button class="book-btn" onclick="bookNow()">Book Now via WhatsApp</button>
+</div>
+
+<footer>
+Contact: <a href="mailto:mobile@sosmechanics.co.uk">mobile@sosmechanics.co.uk</a> | 
+<a href="https://wa.me/447405937104" target="_blank">WhatsApp Chat</a> | Call-Out Fee: £45
+</footer>
+
+<script>
+let cart=[];
+function selectService(name,price){cart.push({item:name,price});updateCart();}
+function selectBundle(name,price,items){cart.push({item:name,price,bundle:items});updateCart();}
+function updateCart(){
+  let ul=document.getElementById('cartItems'); let total=0; ul.innerHTML='';
+  cart.forEach((c,i)=>{
+    total+=c.price;
+    let li=document.createElement('li'); li.style.marginBottom='0.5rem';
+    li.innerHTML=`<strong>${c.item}</strong> – £${c.price} <button onclick="removeItem(${i})">✕</button>`;
+    if(c.bundle){let ulSub=document.createElement('ul'); c.bundle.forEach(s=>{let liSub=document.createElement('li');liSub.innerText=s; ulSub.appendChild(liSub);}); li.appendChild(ulSub);}
+    ul.appendChild(li);
+  });
+  document.getElementById('cartTotal').innerText=total;
+}
+function removeItem(i){cart.splice(i,1); updateCart();}
+function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');}
+
+// Collapsible
+document.querySelectorAll('.collapsible').forEach(btn=>{
+  btn.addEventListener('click',()=>{let content=btn.nextElementSibling; content.style.display=(content.style.display==='block'?'none':'block');});
+});
+
+// Booking
+async function bookNow(){
+  if(cart.length===0){alert('Select at least one service'); return;}
+  if(!navigator.geolocation){alert('Geolocation not supported'); return;}
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const lat=pos.coords.latitude, lng=pos.coords.longitude;
+    // Fetch admin settings
+    const res=await fetch('/api/admin'); const settings=await res.json();
+    const R=3958.8; const dLat=(lat-settings.service_lat)*Math.PI/180; const dLon=(lng-settings.service_lng)*Math.PI/180;
+    const a=Math.sin(dLat/2)**2 + Math.cos(lat*Math.PI/180)*Math.cos(settings.service_lat*Math.PI/180)*Math.sin(dLon/2)**2;
+    const distance=2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))*R;
+    const callout=45; const total=cart.reduce((sum,c)=>sum+c.price,0)+callout;
+    let waMsg=`Services: ${cart.map(c=>c.item).join(', ')}%0ATotal: £${total}%0ALat: ${lat}%0ALng: ${lng}`;
+    if(distance>settings.service_radius){window.open(`https://wa.me/447405937104?text=${waMsg}`,'_blank'); return;}
+    // Otherwise, show receipt modal
+    alert(`Booking within service area!\nTotal: £${total}\nLat: ${lat}, Lng: ${lng}\nSend WhatsApp to confirm.`);
+  });
+}
+</script>
+</body>
+</html>
