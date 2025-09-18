@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS Mechanics Admin Panel</title>
+<style>
+  body { font-family:'Helvetica Neue',Arial,sans-serif; background:#111; color:#eee; margin:0; padding:0;}
+  h1 { text-align:center; color:#FFD700; margin-top:1rem;}
+  form { max-width:600px; margin:auto; padding:1rem; background:#1a1a1a; border-radius:10px;}
+  label { display:block; margin:1rem 0 0.5rem; }
+  input, textarea { width:100%; padding:0.5rem; border-radius:5px; border:none;}
+  button { margin-top:1rem; padding:0.7rem; background:#FFD700; color:#000; border:none; cursor:pointer; border-radius:5px; width:100%; font-weight:bold; }
+</style>
+</head>
+<body>
+<h1>Admin Panel</h1>
+<form id="adminForm">
+  <label>SEO Title</label>
+  <input type="text" id="seoTitle" required>
+  
+  <label>SEO Description</label>
+  <textarea id="seoDescription" rows="3" required></textarea>
+  
+  <label>SEO Keywords (comma separated)</label>
+  <input type="text" id="seoKeywords" required>
+  
+  <label>Structured Data (JSON)</label>
+  <textarea id="structuredData" rows="3" required></textarea>
+  
+  <label>Service Area Latitude</label>
+  <input type="number" step="any" id="serviceLat" required>
+  
+  <label>Service Area Longitude</label>
+  <input type="number" step="any" id="serviceLng" required>
+  
+  <label>Maximum Service Radius (miles)</label>
+  <input type="number" step="0.1" id="serviceRadius" required>
+  
+  <button type="submit">Save Settings</button>
+</form>
+
+<script>
+const form = document.getElementById('adminForm');
+
+async function loadSettings(){
+  const res = await fetch('/api/admin');
+  const data = await res.json();
+  if(data){
+    document.getElementById('seoTitle').value = data.seo_title||'';
+    document.getElementById('seoDescription').value = data.seo_description||'';
+    document.getElementById('seoKeywords').value = data.seo_keywords||'';
+    document.getElementById('structuredData').value = JSON.stringify(data.structured_data||{});
+    document.getElementById('serviceLat').value = data.service_lat||'';
+    document.getElementById('serviceLng').value = data.service_lng||'';
+    document.getElementById('serviceRadius').value = data.service_radius||'';
+  }
+}
+loadSettings();
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const body = {
+    seo_title: document.getElementById('seoTitle').value,
+    seo_description: document.getElementById('seoDescription').value,
+    seo_keywords: document.getElementById('seoKeywords').value,
+    structured_data: JSON.parse(document.getElementById('structuredData').value),
+    service_lat: parseFloat(document.getElementById('serviceLat').value),
+    service_lng: parseFloat(document.getElementById('serviceLng').value),
+    service_radius: parseFloat(document.getElementById('serviceRadius').value)
+  };
+  const res = await fetch('/api/admin', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if(res.ok) alert('Settings saved!');
+});
+</script>
+</body>
+</html>
