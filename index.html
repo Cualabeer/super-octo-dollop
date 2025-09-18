@@ -6,53 +6,32 @@
 <title>SOS Mechanics – Premium Mobile Garage</title>
 <style>
 :root {
-  --bg-color: #121212;
-  --card-color: #1e1e1e;
-  --accent-color: #FFD700;
-  --text-color: #f5f5f5;
-  --btn-color: #25d366;
+  --bg:#121212;
+  --card:#1e1e1e;
+  --accent:#FFD700;
+  --text:#f5f5f5;
+  --btn:#25d366;
 }
-body {
-  margin:0; font-family:'Helvetica Neue', Arial, sans-serif;
-  background:var(--bg-color); color:var(--text-color); line-height:1.5;
-}
-header {background:#000; color:var(--accent-color); text-align:center; padding:1rem; font-size:1.5rem; font-weight:bold;}
+body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);}
+header{background:#000;color:var(--accent);text-align:center;padding:1rem;font-size:1.5rem;font-weight:bold;}
 h1,h2,h3{margin:0.5rem 0;}
-h2{color:var(--accent-color);}
-section{padding:1rem; max-width:900px; margin:auto;}
-.cards-container{display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;}
-.card{
-  background:var(--card-color); border-radius:12px; padding:1rem;
-  flex:1 1 40%; box-shadow:0 2px 6px rgba(0,0,0,0.5); cursor:pointer; transition:transform 0.2s;
-}
+h2.section-title{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0.5rem;background:var(--card);border-radius:10px;margin:0.5rem;}
+.cards-container{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:0.5rem;}
+.card{background:var(--card);border-radius:12px;padding:1rem;flex:1 1 40%;box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer;transition:transform 0.2s;}
 .card:hover{transform:scale(1.02);}
-.toggle-btn{
-  background:var(--accent-color); color:#000; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer;
-  margin-top:0.5rem; display:block; width:150px; text-align:center; margin:auto;
-}
-.modal{
-  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:3000;
-  justify-content:center; align-items:center; padding:1rem;
-}
-.modal-content{
-  background:var(--card-color); padding:2rem; border-radius:15px; max-width:500px; width:100%; text-align:center;
-  box-shadow:0 0 40px rgba(0,0,0,0.5); position:relative;
-}
-.modal-close{
-  position:absolute; top:15px; right:15px; background:var(--accent-color); color:#000;
-  border:none; padding:5px 10px; font-size:1rem; cursor:pointer; border-radius:8px; font-weight:bold;
-}
-input, select, textarea, button{
-  width:100%; padding:0.6rem; margin-bottom:0.6rem; border-radius:8px; border:1px solid #ccc; font-size:1rem;
-}
-input, select, textarea{background:#f1f1f1; color:#111;}
-button{background:var(--btn-color); color:#fff; font-weight:bold; cursor:pointer; transition:transform 0.2s;}
+.list-container{margin:0.5rem 0;padding-left:0;list-style:none;}
+.list-container li{padding:0.5rem;background:var(--card);margin-bottom:0.5rem;border-radius:8px;display:flex;justify-content:space-between;align-items:center;}
+.toggle-btn{background:var(--accent);color:#000;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;margin-top:0.5rem;display:block;width:100%;text-align:center;margin:auto;}
+input,select,textarea,button{width:100%;padding:0.6rem;margin-bottom:0.6rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;}
+input,select,textarea{background:#f1f1f1;color:#111;}
+button{background:var(--btn);color:#fff;font-weight:bold;cursor:pointer;transition:transform 0.2s;}
 button:hover{transform:scale(1.05);}
-footer{
-  background:#000; color:var(--accent-color); text-align:center; padding:1rem; margin-top:2rem; font-size:0.9rem;
-}
-@media(max-width:600px){ .card{flex:1 1 90%;} }
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);z-index:3000;justify-content:center;align-items:center;padding:1rem;}
+.modal-content{background:var(--card);padding:2rem;border-radius:15px;max-width:500px;width:100%;text-align:center;box-shadow:0 0 40px rgba(0,0,0,0.5);position:relative;}
+.modal-close{position:absolute;top:15px;right:15px;background:var(--accent);color:#000;border:none;padding:5px 10px;font-size:1rem;cursor:pointer;border-radius:8px;font-weight:bold;}
+footer{background:#000;color:var(--accent);text-align:center;padding:1rem;margin-top:2rem;font-size:0.9rem;}
+footer a{color:var(--accent);}
+@media(max-width:600px){.card{flex:1 1 90%;}}
 </style>
 </head>
 <body>
@@ -60,269 +39,225 @@ footer{
 <header>SOS Mechanics – Premium Mobile Garage</header>
 
 <section class="hero" style="text-align:center;">
-  <h1>Fast, Reliable Mobile Car Service</h1>
-  <p>From essential maintenance to premium packages, we bring professional garage care straight to your door.</p>
-  <button onclick="openFormModal()">Book Your Service</button>
+<h1>Fast, Reliable Mobile Car Service</h1>
+<p>From essential maintenance to premium packages, we bring professional garage care straight to your door.</p>
 </section>
 
-<!-- Maintained Services -->
-<section>
-  <h2>Maintained Services</h2>
-  <p>Core essential maintenance jobs to keep your car running safely and efficiently.</p>
+<!-- Sections -->
+<h2 class="section-title" onclick="toggleSection('premiumSection')">
+Premium Enhancements <span>▼</span>
+</h2>
+<div id="premiumSection" style="display:none;">
+<div class="cards-container">
+  <div class="card">
+    <strong>Fuel Injector Clean – £65</strong>
+    <p>Optimise fuel delivery and engine efficiency for smoother driving and better economy.</p>
+    <button onclick="confirmService('Fuel Injector Clean',65)">Confirm & Add</button>
+  </div>
+  <div class="card">
+    <strong>Turbo Health Check – £100</strong>
+    <p>Ensure your turbocharger is performing optimally and prevent costly failures.</p>
+    <button onclick="confirmService('Turbo Health Check',100)">Confirm & Add</button>
+  </div>
+</div>
+</div>
 
-  <!-- Essential Maintenance -->
-  <h3>Essential Maintenance</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Oil & Filter Service')">Oil & Filter Service – £100</div>
-    <div class="card" onclick="showInfoModal('A/C Re-Gas')">A/C Re-Gas – £75</div>
+<h2 class="section-title" onclick="toggleSection('bundlesSection')">
+Bundles & Combos <span>▼</span>
+</h2>
+<div id="bundlesSection" style="display:none;">
+<div class="cards-container">
+  <div class="card">
+    <strong>Complete Health Package – £450</strong>
+    <p>Full vehicle inspection including oil, brakes, battery, and A/C re-gas.</p>
+    <button onclick="confirmService('Complete Health Package',450)">Confirm & Add</button>
   </div>
-  <div class="cards-container more-items" id="essentialMaintenance" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Engine Diagnostic Scan')">Engine Diagnostic Scan – £60</div>
-    <div class="card" onclick="showInfoModal('Oil Top-Up Service')">Oil Top-Up Service – £35</div>
-    <div class="card" onclick="showInfoModal('Brake Fluid Flush')">Brake Fluid Flush – £45</div>
-    <div class="card" onclick="showInfoModal('ECU Reset & Diagnostics')">ECU Reset & Diagnostics – £60</div>
-    <div class="card" onclick="showInfoModal('Turbo Health Check')">Turbo Health Check – £100</div>
+  <div class="card">
+    <strong>Essential Care Bundle – £260</strong>
+    <p>Oil & Filter Service plus Brake Pads Replacement at a discounted rate.</p>
+    <button onclick="confirmService('Essential Care Bundle',260)">Confirm & Add</button>
   </div>
-  <button class="toggle-btn" onclick="toggleSection('essentialMaintenance')">Show More ▼</button>
+</div>
+</div>
 
-  <!-- Safety & Braking -->
-  <h3>Safety & Braking</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Brake Pads Replacement')">Brake Pads Replacement – £120</div>
-    <div class="card" onclick="showInfoModal('Brake Disc Resurfacing')">Brake Disc Resurfacing – £95</div>
+<h2 class="section-title" onclick="toggleSection('maintainedSection')">
+Maintained Services <span>▼</span>
+</h2>
+<div id="maintainedSection" style="display:none;">
+<div class="cards-container">
+  <div class="card">
+    <strong>Oil & Filter Service – £100</strong>
+    <p>Full oil & filter replacement to ensure engine longevity and smooth performance.</p>
+    <button onclick="confirmService('Oil & Filter Service',100)">Confirm & Add</button>
   </div>
-  <div class="cards-container more-items" id="safetyBraking" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Suspension Check & Top-Up')">Suspension Check & Top-Up – £85</div>
-    <div class="card" onclick="showInfoModal('Power Steering Flush')">Power Steering Flush – £55</div>
+  <div class="card">
+    <strong>Brake Pads Replacement – £120</strong>
+    <p>High-quality pads to maintain safe braking and stopping power.</p>
+    <button onclick="confirmService('Brake Pads Replacement',120)">Confirm & Add</button>
   </div>
-  <button class="toggle-btn" onclick="toggleSection('safetyBraking')">Show More ▼</button>
+</div>
+<ul class="list-container">
+  <li>Battery Replacement – £150 <button onclick="confirmService('Battery Replacement',150)">Add</button></li>
+  <li>A/C Re-Gas – £75 <button onclick="confirmService('A/C Re-Gas',75)">Add</button></li>
+  <li>Engine Diagnostic Scan – £60 <button onclick="confirmService('Engine Diagnostic Scan',60)">Add</button></li>
+</ul>
+</div>
 
-  <!-- Electrical & Power -->
-  <h3>Electrical & Power</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Battery Replacement')">Battery Replacement – £150</div>
-    <div class="card" onclick="showInfoModal('Spark Plug Replacement')">Spark Plug Replacement – £55</div>
-  </div>
-  <div class="cards-container more-items" id="electricalPower" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Cabin Filter Replacement')">Cabin Filter Replacement – £30</div>
-    <div class="card" onclick="showInfoModal('Headlight Upgrade & Alignment')">Headlight Upgrade & Alignment – £75</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('electricalPower')">Show More ▼</button>
-</section>
+<h2 class="section-title" onclick="toggleSection('addonsSection')">
+Add-Ons <span>▼</span>
+</h2>
+<div id="addonsSection" style="display:none;">
+<ul class="list-container">
+  <li>Cabin Filter Replacement – £30 <button onclick="confirmService('Cabin Filter Replacement',30)">Add</button></li>
+  <li>Power Steering Flush – £55 <button onclick="confirmService('Power Steering Flush',55)">Add</button></li>
+  <li>Gearbox Oil Change – £90 <button onclick="confirmService('Gearbox Oil Change',90)">Add</button></li>
+</ul>
+</div>
 
-<!-- Bundles & Combos -->
-<section>
-  <h2>Bundles & Combos</h2>
-  <p>Pre-packaged services for maximum convenience and value.</p>
-
-  <!-- Premium Packages -->
-  <h3>Premium Packages</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Complete Health Package')">Complete Health Package – £450</div>
-    <div class="card" onclick="showInfoModal('Essential Care Bundle')">Essential Care Bundle – £260</div>
+<h2 class="section-title" onclick="toggleSection('packagesSection')">
+Maintenance Packages <span>▼</span>
+</h2>
+<div id="packagesSection" style="display:none;">
+<div class="cards-container">
+  <div class="card">
+    <strong>Monthly Essential Plan – £29/mo</strong>
+    <p>Regular essential maintenance, fluid checks, and small fixes to keep your car healthy.</p>
+    <button onclick="confirmService('Monthly Essential Plan',29)">Confirm & Add</button>
   </div>
-  <div class="cards-container more-items" id="premiumPackages" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Diagnostics & ECU Reset')">Diagnostics & ECU Reset – £60</div>
-    <div class="card" onclick="showInfoModal('Paint Protection Coating')">Paint Protection Coating – £120</div>
-    <div class="card" onclick="showInfoModal('Premium Car Wash & Detailing')">Premium Car Wash & Detailing – £70</div>
+  <div class="card">
+    <strong>Premium Care Plan – £49/mo</strong>
+    <p>Full monthly maintenance including all essentials plus priority booking and diagnostics.</p>
+    <button onclick="confirmService('Premium Care Plan',49)">Confirm & Add</button>
   </div>
-  <button class="toggle-btn" onclick="toggleSection('premiumPackages')">Show More ▼</button>
-
-  <!-- Quick Combos -->
-  <h3>Quick Combos</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Monthly Essential Plan')">Monthly Essential Plan – £29/mo</div>
-    <div class="card" onclick="showInfoModal('Premium Care Plan')">Premium Care Plan – £49/mo</div>
-  </div>
-  <div class="cards-container more-items" id="quickCombos" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Oil & Brake Pads Combo')">Oil & Brake Pads Combo – £200</div>
-    <div class="card" onclick="showInfoModal('Engine + Diagnostics Combo')">Engine + Diagnostics Combo – £140</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('quickCombos')">Show More ▼</button>
-</section>
-
-<!-- Premium Enhancements -->
-<section>
-  <h2>Premium Enhancements</h2>
-  <p>Enhance your car’s performance and longevity with these optional services.</p>
-
-  <!-- Engine & Fuel -->
-  <h3>Engine & Fuel</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Fuel Injector Clean')">Fuel Injector Clean – £65</div>
-    <div class="card" onclick="showInfoModal('Turbo Health Check')">Turbo Health Check – £100</div>
-  </div>
-  <div class="cards-container more-items" id="engineFuel" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Oil Top-Up Service')">Oil Top-Up Service – £35</div>
-    <div class="card" onclick="showInfoModal('Engine Diagnostic Scan')">Engine Diagnostic Scan – £60</div>
-    <div class="card" onclick="showInfoModal('ECU Reset & Tuning')">ECU Reset & Tuning – £70</div>
-    <div class="card" onclick="showInfoModal('Turbo Oil Flush')">Turbo Oil Flush – £50</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('engineFuel')">Show More ▼</button>
-
-  <!-- Cooling & Air -->
-  <h3>Cooling & Air</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('A/C Re-Gas')">A/C Re-Gas – £75</div>
-    <div class="card" onclick="showInfoModal('Cabin Filter Replacement')">Cabin Filter Replacement – £30</div>
-  </div>
-  <div class="cards-container more-items" id="coolingAir" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Coolant Flush & Top-Up')">Coolant Flush & Top-Up – £55</div>
-    <div class="card" onclick="showInfoModal('Radiator Health Check')">Radiator Health Check – £60</div>
-    <div class="card" onclick="showInfoModal('Heater Core Flush')">Heater Core Flush – £50</div>
-    <div class="card" onclick="showInfoModal('AC Cabin Clean')">AC Cabin Clean – £45</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('coolingAir')">Show More ▼</button>
-
-  <!-- Drive & Transmission -->
-  <h3>Drive & Transmission</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Gearbox Oil Change')">Gearbox Oil Change – £90</div>
-    <div class="card" onclick="showInfoModal('Clutch Adjustment')">Clutch Adjustment – £85</div>
-  </div>
-  <div class="cards-container more-items" id="driveTransmission" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Power Steering Flush')">Power Steering Flush – £55</div>
-    <div class="card" onclick="showInfoModal('Differential Oil Change')">Differential Oil Change – £60</div>
-    <div class="card" onclick="showInfoModal('Transmission Health Scan')">Transmission Health Scan – £70</div>
-    <div class="card" onclick="showInfoModal('Drive Shaft Inspection')">Drive Shaft Inspection – £50</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('driveTransmission')">Show More ▼</button>
-
-  <!-- Exterior & Lighting -->
-  <h3>Exterior & Lighting</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Paint Protection Coating')">Paint Protection Coating – £120</div>
-    <div class="card" onclick="showInfoModal('Headlight Upgrade & Alignment')">Headlight Upgrade & Alignment – £75</div>
-  </div>
-  <div class="cards-container more-items" id="exteriorLighting" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Premium Car Wash & Detailing')">Premium Car Wash & Detailing – £70</div>
-    <div class="card" onclick="showInfoModal('Alloy Wheel Refurb')">Alloy Wheel Refurb – £65</div>
-    <div class="card" onclick="showInfoModal('Window Tinting')">Window Tinting – £80</div>
-    <div class="card" onclick="showInfoModal('Trim Restoration')">Trim Restoration – £50</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('exteriorLighting')">Show More ▼</button>
-
-  <!-- Cabin & Interior -->
-  <h3>Cabin & Interior</h3>
-  <div class="cards-container">
-    <div class="card" onclick="showInfoModal('Interior Sanitisation')">Interior Sanitisation – £60</div>
-    <div class="card" onclick="showInfoModal('Leather Conditioning')">Leather Conditioning – £50</div>
-  </div>
-  <div class="cards-container more-items" id="cabinInterior" style="display:none; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-    <div class="card" onclick="showInfoModal('Fabric Protection Treatment')">Fabric Protection Treatment – £45</div>
-    <div class="card" onclick="showInfoModal('Odour Elimination')">Odour Elimination – £35</div>
-    <div class="card" onclick="showInfoModal('Dashboard Restoration')">Dashboard Restoration – £40</div>
-    <div class="card" onclick="showInfoModal('Seat Track Lubrication')">Seat Track Lubrication – £30</div>
-  </div>
-  <button class="toggle-btn" onclick="toggleSection('cabinInterior')">Show More ▼</button>
-</section>
+</div>
+</div>
 
 <!-- Booking Form Modal -->
 <div class="modal" id="formModal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeFormModal()">✕</button>
-    <h2>Enter Your Details</h2>
-    <input type="text" id="clientName" placeholder="Full Name" required pattern="[A-Za-z ]{2,}">
-    <input type="text" id="clientContact" placeholder="Phone or Email" required>
-    <input type="text" id="clientCar" placeholder="Car Make & Model" required>
-    <input type="text" id="clientReg" placeholder="Registration (UK format: AB12 CDE)" required pattern="^[A-Z]{2}[0-9]{2} [A-Z]{3}$">
-    <input type="text" id="clientLocation" placeholder="Detecting location..." required>
-    <button onclick="submitForm()">Submit & Confirm Booking</button>
-  </div>
+<div class="modal-content">
+  <button class="modal-close" onclick="closeFormModal()">✕</button>
+  <h2>Confirm Booking & Your Details</h2>
+  <input type="text" id="clientName" placeholder="Full Name" required pattern="[A-Za-z ]{2,}">
+  <input type="text" id="clientContact" placeholder="Phone or Email" required>
+  <input type="text" id="clientCar" placeholder="Car Make & Model" required>
+  <input type="text" id="clientReg" placeholder="UK Registration AB12 CDE" required pattern="^[A-Z]{2}[0-9]{2} [A-Z]{3}$">
+  <input type="text" id="clientAddress" placeholder="Detecting location..." readonly>
+  <button onclick="sendBooking()">Send to WhatsApp</button>
+</div>
 </div>
 
-<!-- Service Info Modal -->
-<div class="modal" id="infoModal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div id="modalBody"></div>
+<!-- FAQ Section -->
+<h2 class="section-title" onclick="toggleSection('faqSection')">
+Frequently Asked Questions <span>▼</span>
+</h2>
+<div id="faqSection" style="display:none; padding:1rem;">
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">Can I book multiple services at once?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    Yes, you can select multiple services or bundles. Confirm each service and send the booking via WhatsApp or book directly on the site.
   </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">How accurate is the location detection?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    We use high-accuracy geolocation with reverse geocoding to ensure the mechanic reaches your exact location.
+  </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">Are your prices fixed?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    All listed prices are current UK prices. Any additional parts or labor will be communicated beforehand.
+  </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">Can I choose a specific mechanic or time slot?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    Currently bookings are scheduled automatically, but you can communicate preferences via WhatsApp after confirming your services.
+  </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">What if I need an urgent service?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    Select your required services and send the booking via WhatsApp. Our team will prioritise urgent requests based on availability.
+  </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">Do I need to register to book?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    Registration is optional. You can book directly via WhatsApp without creating an account, but registration allows faster repeat bookings.
+  </div>
+</div>
+<div class="faq-item">
+  <button class="toggle-btn" onclick="toggleFaq(this)">Can I see what each package includes before booking?</button>
+  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
+    Yes, expand the service sections or click on any card to see detailed descriptions of each package or add-on.
+  </div>
+</div>
 </div>
 
 <footer>
-  Contact: <a href="mailto:mobile@sosmechanics.co.uk" style="color:var(--accent-color)">mobile@sosmechanics.co.uk</a> | 
-  <a href="https://wa.me/447405937104" target="_blank" style="color:var(--accent-color)">WhatsApp Chat</a><br>
-  © 2025 SOS Mechanics | <a href="#" style="color:var(--accent-color)">Terms & Conditions</a> | <a href="#" style="color:var(--accent-color)">Privacy Policy</a>
+Contact: <a href="mailto:mobile@sosmechanics.co.uk">mobile@sosmechanics.co.uk</a> | 
+<a href="https://wa.me/447405937104" target="_blank">WhatsApp Chat</a><br>
+© 2025 SOS Mechanics | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
 </footer>
 
 <script>
 let selectedServices=[];
-let formData={lat:0, lon:0};
-let formFilled=false;
+let clientLocation={lat:null,lon:null,address:''};
 
-// Toggle sections
 function toggleSection(id){
   const el=document.getElementById(id);
-  el.style.display=(el.style.display==='none')?'flex':'none';
+  el.style.display=(el.style.display==='none')?'block':'none';
 }
 
-// Service info modal
-function showInfoModal(service){
-  const modal=document.getElementById('infoModal');
-  const body=document.getElementById('modalBody');
-  let desc="";
-  switch(service){
-    case "Battery Replacement": desc="Reliable starts every time."; break;
-    case "Brake Pads Replacement": desc="Ensure safe braking performance."; break;
-    case "Oil & Filter Service": desc="Full oil & filter replacement for engine longevity."; break;
-    case "A/C Re-Gas": desc="Keep your cabin cool with professional A/C service."; break;
-    default: desc="Professional, fast service."; break;
+function confirmService(name,price){
+  if(!selectedServices.some(s=>s.name===name)){
+    selectedServices.push({name,price});
   }
-  body.innerHTML=`<h3>${service}</h3><p>${desc}</p><button onclick="addService('${service}')">Add to Booking</button>`;
-  modal.style.display='flex';
-}
-function closeModal(){ document.getElementById('infoModal').style.display='none'; }
-function addService(service){
-  if(!selectedServices.includes(service)){ selectedServices.push(service); }
-  closeModal();
-  alert(`${service} added to booking`);
+  alert(`${name} added to your booking`);
+  openFormModal();
 }
 
-// Form modal
-function openFormModal(){ document.getElementById('formModal').style.display='flex'; getLocation(); }
-function closeFormModal(){ document.getElementById('formModal').style.display='none'; }
+// Modal
+function openFormModal(){ 
+  document.getElementById('formModal').style.display='flex'; 
+  getLocation();
+}
+function closeFormModal(){ document.getElementById('formModal').style.display='none';}
 
-// Location
+// Geolocation
 function getLocation(){
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-      pos=>{
-        formData.lat=pos.coords.latitude;
-        formData.lon=pos.coords.longitude;
-        document.getElementById('clientLocation').value=`${formData.lat.toFixed(6)}, ${formData.lon.toFixed(6)}`;
-      },
-      err=>{ document.getElementById('clientLocation').placeholder="Enter location manually"; },
-      {enableHighAccuracy:true, timeout:10000, maximumAge:0}
-    );
-  }
+    navigator.geolocation.getCurrentPosition(pos=>{
+      clientLocation.lat=pos.coords.latitude;
+      clientLocation.lon=pos.coords.longitude;
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${clientLocation.lat}&lon=${clientLocation.lon}&format=json`)
+      .then(res=>res.json())
+      .then(data=>{
+        clientLocation.address=data.display_name;
+        document.getElementById('clientAddress').value=clientLocation.address;
+      });
+    },err=>{document.getElementById('clientAddress').value='Location unavailable';});
+  } else {document.getElementById('clientAddress').value='Geolocation not supported';}
 }
 
-// Submit form
-function submitForm(){
-  const name=document.getElementById('clientName').value.trim();
-  const contact=document.getElementById('clientContact').value.trim();
-  const car=document.getElementById('clientCar').value.trim();
-  const reg=document.getElementById('clientReg').value.trim().toUpperCase();
-  const location=document.getElementById('clientLocation').value.trim();
-  const regPattern=/^[A-Z]{2}[0-9]{2} [A-Z]{3}$/;
-  if(!name.match(/^[A-Za-z ]{2,}$/)){ alert("Enter valid name"); return; }
-  if(!contact){ alert("Enter valid contact"); return; }
-  if(!car){ alert("Enter car make/model"); return; }
-  if(!regPattern.test(reg)){ alert("Enter valid UK registration (AB12 CDE)"); return; }
-  if(!location){ alert("Enter location"); return; }
-
-  formData.name=name; formData.contact=contact; formData.car=car; formData.reg=reg; formData.location=location;
-  formFilled=true;
+// WhatsApp Booking
+function sendBooking(){
+  const name=document.getElementById('clientName').value;
+  const contact=document.getElementById('clientContact').value;
+  const car=document.getElementById('clientCar').value;
+  const reg=document.getElementById('clientReg').value;
+  if(!name||!contact||!car||!reg){alert('Please fill all required fields');return;}
+  let message=`Hello SOS Mechanics,%0AName: ${name}%0AContact: ${contact}%0ACar: ${car}%0ARegistration: ${reg}%0AAddress: ${clientLocation.address}%0AMap: https://www.google.com/maps/search/?api=1&query=${clientLocation.lat},${clientLocation.lon}%0ASelected Services:%0A`;
+  selectedServices.forEach(s=>{message+=`- ${s.name} – £${s.price}%0A`;});
+  window.open(`https://wa.me/447405937104?text=${message}`,'_blank');
   closeFormModal();
-  sendWhatsApp();
 }
 
-// WhatsApp booking
-function sendWhatsApp(){
-  const number="447405937104";
-  let message=`Hello SOS Mechanics,%0AName: ${formData.name}%0AContact: ${formData.contact}%0ACar: ${formData.car}%0ARegistration: ${formData.reg}%0AAddress: ${formData.location}%0AMap: https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lon}%0ASelected Services:%0A`;
-  selectedServices.forEach(s=>{ message+=`- ${s}%0A`; });
-  window.open(`https://wa.me/${number}?text=${message}`,'_blank');
+// FAQ accordion
+function toggleFaq(button){
+  const answer=button.nextElementSibling;
+  answer.style.display=(answer.style.display==='none')?'block':'none';
 }
 </script>
 </body>
