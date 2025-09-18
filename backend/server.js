@@ -1,21 +1,21 @@
-import express from "express";
-import cors from "cors";
-import pool from "./db.js";
-import adminRoutes from "./routes/admin.js";
-import authRoutes from "./routes/auth.js";
-
+require('dotenv').config();
+const express = require('express');
 const app = express();
-app.use(cors());
-app.use(express.json());
+const pool = require('./db');
+const adminRoutes = require('./routes/admin');
+const bodyParser = require('body-parser');
 
-app.use("/admin", adminRoutes);
-app.use("/auth", authRoutes);
+app.use(bodyParser.json());
+app.use('/admin', adminRoutes);
 
-import path from "path";
-import { fileURLToPath } from "url";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.join(__dirname, "../frontend")));
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "../frontend/index.html")));
+// Simple health check
+app.get('/admin/health', async (req,res)=>{
+  try{
+    const result = await pool.query("SELECT NOW()");
+    res.json({status:"OK", db_time: result.rows[0].now});
+  }catch(err){
+    res.status(500).json({status:"FAIL", error:err.message});
+  }
+});
 
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log(`🚀 Server running on ${PORT}`));
+app.listen(process.env.PORT||3000,()=>console.log(`Backend running on port ${process.env.PORT}`));
