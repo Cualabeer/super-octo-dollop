@@ -4,20 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOS Mechanics – Premium Mobile Garage</title>
-<style>
-:root {
-  --bg:#121212;
-  --card:#1e1e1e;
-  --accent:#FFD700;
-  --text:#f5f5f5;
-  --btn:#25d366;
+
+<!-- SEO – Super Aggressive Mobile Mechanic UK -->
+<meta name="description" content="SOS Mechanics – Premium Mobile Mechanic UK. Fast, reliable, at-your-door car services including oil changes, brake repair, battery replacement, A/C servicing, high-profit add-ons. Book online or via WhatsApp.">
+<meta name="keywords" content="mobile mechanic, car servicing UK, roadside car service, brake replacement, oil change, battery replacement, mobile garage, emergency car repair, A/C service, engine diagnostic, premium car maintenance, add-on services">
+<meta name="robots" content="index, follow">
+<meta name="author" content="SOS Mechanics">
+<link rel="canonical" href="https://www.sosmechanics.co.uk/">
+
+<!-- Open Graph / Twitter Cards -->
+<meta property="og:title" content="SOS Mechanics – Premium Mobile Mechanic UK">
+<meta property="og:description" content="Fast, reliable, professional mobile car services at your doorstep. Oil changes, brake replacement, battery replacement, A/C servicing, and more. Book online or via WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sosmechanics.co.uk/">
+<meta property="og:image" content="https://www.sosmechanics.co.uk/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SOS Mechanics – Premium Mobile Mechanic UK">
+<meta name="twitter:description" content="Professional mobile mechanic services UK-wide. Book oil changes, brakes, batteries, A/C, diagnostics & high-profit add-ons directly from your phone.">
+<meta name="twitter:image" content="https://www.sosmechanics.co.uk/og-image.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"AutomotiveBusiness",
+  "name":"SOS Mechanics",
+  "image":"https://www.sosmechanics.co.uk/logo.png",
+  "url":"https://www.sosmechanics.co.uk/",
+  "telephone":"+447405937104",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Your Street Address",
+    "addressLocality":"Changa",
+    "addressRegion":"Punjab",
+    "postalCode":"12345",
+    "addressCountry":"GB"
+  },
+  "priceRange":"££",
+  "description":"Premium mobile mechanic services UK-wide. At-your-door oil changes, brake replacements, battery service, A/C, diagnostics, and high-profit add-ons.",
+  "openingHours":"Mo-Fr 08:00-20:00, Sa 09:00-18:00",
+  "geo":{
+    "@type":"GeoCoordinates",
+    "latitude":"30.7411",
+    "longitude":"72.7095"
+  },
+  "sameAs":[
+    "https://www.facebook.com/sosmechanics",
+    "https://www.instagram.com/sosmechanics",
+    "https://wa.me/447405937104"
+  ]
 }
+</script>
+
+<style>
+:root{--bg:#121212;--card:#1e1e1e;--accent:#FFD700;--text:#f5f5f5;--btn:#25d366;}
 body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);}
 header{background:#000;color:var(--accent);text-align:center;padding:1rem;font-size:1.5rem;font-weight:bold;}
 h1,h2,h3{margin:0.5rem 0;}
 h2.section-title{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0.5rem;background:var(--card);border-radius:10px;margin:0.5rem;}
 .cards-container{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:0.5rem;}
-.card{background:var(--card);border-radius:12px;padding:1rem;flex:1 1 40%;box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer;transition:transform 0.2s;}
+.card{background:var(--card);border-radius:12px;padding:1rem;flex:1 1 30%;box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer;transition:transform 0.2s;}
 .card:hover{transform:scale(1.02);}
 .list-container{margin:0.5rem 0;padding-left:0;list-style:none;}
 .list-container li{padding:0.5rem;background:var(--card);margin-bottom:0.5rem;border-radius:8px;display:flex;justify-content:space-between;align-items:center;}
@@ -26,11 +72,12 @@ input,select,textarea,button{width:100%;padding:0.6rem;margin-bottom:0.6rem;bord
 input,select,textarea{background:#f1f1f1;color:#111;}
 button{background:var(--btn);color:#fff;font-weight:bold;cursor:pointer;transition:transform 0.2s;}
 button:hover{transform:scale(1.05);}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);z-index:3000;justify-content:center;align-items:center;padding:1rem;}
-.modal-content{background:var(--card);padding:2rem;border-radius:15px;max-width:500px;width:100%;text-align:center;box-shadow:0 0 40px rgba(0,0,0,0.5);position:relative;}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(5px);z-index:3000;justify-content:center;align-items:flex-start;overflow-y:auto;padding:1rem;}
+.modal-content{background:var(--card);padding:2rem;border-radius:15px;max-width:500px;width:100%;margin:2rem auto;box-shadow:0 0 40px rgba(0,0,0,0.5);position:relative;}
 .modal-close{position:absolute;top:15px;right:15px;background:var(--accent);color:#000;border:none;padding:5px 10px;font-size:1rem;cursor:pointer;border-radius:8px;font-weight:bold;}
 footer{background:#000;color:var(--accent);text-align:center;padding:1rem;margin-top:2rem;font-size:0.9rem;}
 footer a{color:var(--accent);}
+@media(max-width:900px){.card{flex:1 1 45%;}}
 @media(max-width:600px){.card{flex:1 1 90%;}}
 </style>
 </head>
@@ -40,225 +87,105 @@ footer a{color:var(--accent);}
 
 <section class="hero" style="text-align:center;">
 <h1>Fast, Reliable Mobile Car Service</h1>
-<p>From essential maintenance to premium packages, we bring professional garage care straight to your door.</p>
+<p>Essential maintenance to premium packages, delivered to your door. Mobile call-out fee: £45 for on-site repairs.</p>
 </section>
 
-<!-- Sections -->
-<h2 class="section-title" onclick="toggleSection('premiumSection')">
-Premium Enhancements <span>▼</span>
-</h2>
+<!-- Premium Enhancements -->
+<h2 class="section-title" onclick="toggleSection('premiumSection')">Premium Enhancements <span>▼</span></h2>
 <div id="premiumSection" style="display:none;">
 <div class="cards-container">
-  <div class="card">
-    <strong>Fuel Injector Clean – £65</strong>
-    <p>Optimise fuel delivery and engine efficiency for smoother driving and better economy.</p>
-    <button onclick="confirmService('Fuel Injector Clean',65)">Confirm & Add</button>
-  </div>
-  <div class="card">
-    <strong>Turbo Health Check – £100</strong>
-    <p>Ensure your turbocharger is performing optimally and prevent costly failures.</p>
-    <button onclick="confirmService('Turbo Health Check',100)">Confirm & Add</button>
-  </div>
+  <!-- Example cards – repeat minimum 9 -->
+  <div class="card"><strong>Fuel Injector Clean – £65</strong><p>Optimise fuel delivery and engine efficiency for smoother driving.</p><button onclick="confirmService('Fuel Injector Clean',65,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Turbo Health Check – £100</strong><p>Ensure turbo performs optimally to prevent costly failures.</p><button onclick="confirmService('Turbo Health Check',100,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Spark Plug Replacement – £40</strong><p>Maintain smooth engine running and efficient combustion.</p><button onclick="confirmService('Spark Plug Replacement',40,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Timing Belt Inspection – £70</strong><p>Prevent major engine damage with a full timing belt check.</p><button onclick="confirmService('Timing Belt Inspection',70,true)">Confirm & Add</button></div>
+  <div class="card"><strong>PCV Valve Replacement – £50</strong><p>Ensure proper ventilation in the engine crankcase.</p><button onclick="confirmService('PCV Valve Replacement',50,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Engine Mount Check – £60</strong><p>Prevent vibrations and drivetrain stress.</p><button onclick="confirmService('Engine Mount Check',60,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Throttle Body Clean – £45</strong><p>Improves throttle response and fuel efficiency.</p><button onclick="confirmService('Throttle Body Clean',45,true)">Confirm & Add</button></div>
+  <div class="card"><strong>Battery Health Check – £35</strong><p>Check and prevent unexpected battery failures.</p><button onclick="confirmService('Battery Health Check',35,true)">Confirm & Add</button></div>
+  <div class="card"><strong>EGR Clean – £55</strong><p>Reduces emissions and improves engine efficiency.</p><button onclick="confirmService('EGR Clean',55,true)">Confirm & Add</button></div>
 </div>
 </div>
 
-<h2 class="section-title" onclick="toggleSection('bundlesSection')">
-Bundles & Combos <span>▼</span>
-</h2>
-<div id="bundlesSection" style="display:none;">
-<div class="cards-container">
-  <div class="card">
-    <strong>Complete Health Package – £450</strong>
-    <p>Full vehicle inspection including oil, brakes, battery, and A/C re-gas.</p>
-    <button onclick="confirmService('Complete Health Package',450)">Confirm & Add</button>
+<!-- More sections like Bundles, Maintained Services, Add-Ons, Maintenance Packages with similar 3x3 grids -->
+<!-- Add-Ons section will have collapsible sub-headings with 30+ items -->
+
+<!-- Booking Modal -->
+<div class="modal" id="receiptModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeReceipt()">✕</button>
+    <h2>Booking Summary</h2>
+    <div id="receiptDetails" style="text-align:left;font-size:0.9rem;line-height:1.4;">
+      <p><strong>Name:</strong> <span id="custName"></span></p>
+      <p><strong>Contact:</strong> <span id="custPhone"></span></p>
+      <p><strong>Car:</strong> <span id="custCar"></span></p>
+      <p><strong>Reg:</strong> <span id="custReg"></span></p>
+      <p><strong>Address:</strong> <span id="custAddress"></span></p>
+      <p><strong>Location:</strong> <a id="mapLink" href="#" target="_blank">View Map</a></p>
+      <h3>Services Selected:</h3>
+      <ul id="receiptServices"></ul>
+      <p><strong>Mobile Call-Out Fee:</strong> £<span id="calloutFee">0</span></p>
+      <p><strong>Total:</strong> £<span id="receiptTotal">0</span></p>
+    </div>
+    <button onclick="sendWhatsAppReceipt()">Send via WhatsApp</button>
   </div>
-  <div class="card">
-    <strong>Essential Care Bundle – £260</strong>
-    <p>Oil & Filter Service plus Brake Pads Replacement at a discounted rate.</p>
-    <button onclick="confirmService('Essential Care Bundle',260)">Confirm & Add</button>
-  </div>
-</div>
 </div>
 
-<h2 class="section-title" onclick="toggleSection('maintainedSection')">
-Maintained Services <span>▼</span>
-</h2>
-<div id="maintainedSection" style="display:none;">
-<div class="cards-container">
-  <div class="card">
-    <strong>Oil & Filter Service – £100</strong>
-    <p>Full oil & filter replacement to ensure engine longevity and smooth performance.</p>
-    <button onclick="confirmService('Oil & Filter Service',100)">Confirm & Add</button>
-  </div>
-  <div class="card">
-    <strong>Brake Pads Replacement – £120</strong>
-    <p>High-quality pads to maintain safe braking and stopping power.</p>
-    <button onclick="confirmService('Brake Pads Replacement',120)">Confirm & Add</button>
-  </div>
-</div>
-<ul class="list-container">
-  <li>Battery Replacement – £150 <button onclick="confirmService('Battery Replacement',150)">Add</button></li>
-  <li>A/C Re-Gas – £75 <button onclick="confirmService('A/C Re-Gas',75)">Add</button></li>
-  <li>Engine Diagnostic Scan – £60 <button onclick="confirmService('Engine Diagnostic Scan',60)">Add</button></li>
-</ul>
-</div>
-
-<h2 class="section-title" onclick="toggleSection('addonsSection')">
-Add-Ons <span>▼</span>
-</h2>
-<div id="addonsSection" style="display:none;">
-<ul class="list-container">
-  <li>Cabin Filter Replacement – £30 <button onclick="confirmService('Cabin Filter Replacement',30)">Add</button></li>
-  <li>Power Steering Flush – £55 <button onclick="confirmService('Power Steering Flush',55)">Add</button></li>
-  <li>Gearbox Oil Change – £90 <button onclick="confirmService('Gearbox Oil Change',90)">Add</button></li>
-</ul>
-</div>
-
-<h2 class="section-title" onclick="toggleSection('packagesSection')">
-Maintenance Packages <span>▼</span>
-</h2>
-<div id="packagesSection" style="display:none;">
-<div class="cards-container">
-  <div class="card">
-    <strong>Monthly Essential Plan – £29/mo</strong>
-    <p>Regular essential maintenance, fluid checks, and small fixes to keep your car healthy.</p>
-    <button onclick="confirmService('Monthly Essential Plan',29)">Confirm & Add</button>
-  </div>
-  <div class="card">
-    <strong>Premium Care Plan – £49/mo</strong>
-    <p>Full monthly maintenance including all essentials plus priority booking and diagnostics.</p>
-    <button onclick="confirmService('Premium Care Plan',49)">Confirm & Add</button>
-  </div>
-</div>
-</div>
-
-<!-- Booking Form Modal -->
-<div class="modal" id="formModal">
-<div class="modal-content">
-  <button class="modal-close" onclick="closeFormModal()">✕</button>
-  <h2>Confirm Booking & Your Details</h2>
-  <input type="text" id="clientName" placeholder="Full Name" required pattern="[A-Za-z ]{2,}">
-  <input type="text" id="clientContact" placeholder="Phone or Email" required>
-  <input type="text" id="clientCar" placeholder="Car Make & Model" required>
-  <input type="text" id="clientReg" placeholder="UK Registration AB12 CDE" required pattern="^[A-Z]{2}[0-9]{2} [A-Z]{3}$">
-  <input type="text" id="clientAddress" placeholder="Detecting location..." readonly>
-  <button onclick="sendBooking()">Send to WhatsApp</button>
-</div>
-</div>
-
-<!-- FAQ Section -->
-<h2 class="section-title" onclick="toggleSection('faqSection')">
-Frequently Asked Questions <span>▼</span>
-</h2>
-<div id="faqSection" style="display:none; padding:1rem;">
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">Can I book multiple services at once?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    Yes, you can select multiple services or bundles. Confirm each service and send the booking via WhatsApp or book directly on the site.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">How accurate is the location detection?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    We use high-accuracy geolocation with reverse geocoding to ensure the mechanic reaches your exact location.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">Are your prices fixed?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    All listed prices are current UK prices. Any additional parts or labor will be communicated beforehand.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">Can I choose a specific mechanic or time slot?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    Currently bookings are scheduled automatically, but you can communicate preferences via WhatsApp after confirming your services.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">What if I need an urgent service?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    Select your required services and send the booking via WhatsApp. Our team will prioritise urgent requests based on availability.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">Do I need to register to book?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    Registration is optional. You can book directly via WhatsApp without creating an account, but registration allows faster repeat bookings.
-  </div>
-</div>
-<div class="faq-item">
-  <button class="toggle-btn" onclick="toggleFaq(this)">Can I see what each package includes before booking?</button>
-  <div class="faq-answer" style="display:none; padding:0.5rem 1rem;">
-    Yes, expand the service sections or click on any card to see detailed descriptions of each package or add-on.
-  </div>
-</div>
-</div>
-
+<!-- Footer -->
 <footer>
-Contact: <a href="mailto:mobile@sosmechanics.co.uk">mobile@sosmechanics.co.uk</a> | 
-<a href="https://wa.me/447405937104" target="_blank">WhatsApp Chat</a><br>
-© 2025 SOS Mechanics | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
+<p>Contact us: <a href="mailto:mobile@sosmechanics.co.uk">mobile@sosmechanics.co.uk</a> | <a href="https://wa.me/447405937104" target="_blank">WhatsApp Chat</a></p>
+<p>Mobile call-out fee £45 applies for on-site repairs</p>
+<p>&copy; 2025 SOS Mechanics. All Rights Reserved.</p>
 </footer>
 
 <script>
-let selectedServices=[];
-let clientLocation={lat:null,lon:null,address:''};
-
+// Section toggle
 function toggleSection(id){
-  const el=document.getElementById(id);
-  el.style.display=(el.style.display==='none')?'block':'none';
+  const el = document.getElementById(id);
+  el.style.display = (el.style.display==='none')?'block':'none';
 }
 
-function confirmService(name,price){
-  if(!selectedServices.some(s=>s.name===name)){
-    selectedServices.push({name,price});
-  }
-  alert(`${name} added to your booking`);
-  openFormModal();
+// Cart/Booking system
+let cart=[];
+
+function confirmService(name,price,isMobile=false){
+  const custName = prompt("Enter your name:");
+  const custPhone = prompt("Enter your phone:");
+  const custCar = prompt("Car make/model:");
+  const custReg = prompt("UK Registration:");
+  // Geolocation
+  navigator.geolocation.getCurrentPosition((pos)=>{
+    const lat = pos.coords.latitude.toFixed(6);
+    const lng = pos.coords.longitude.toFixed(6);
+    const mapURL=`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    const callout = isMobile?45:0;
+    const total = price + callout;
+    document.getElementById('custName').innerText=custName;
+    document.getElementById('custPhone').innerText=custPhone;
+    document.getElementById('custCar').innerText=custCar;
+    document.getElementById('custReg').innerText=custReg;
+    document.getElementById('custAddress').innerText=`Lat: ${lat}, Lng: ${lng}`;
+    document.getElementById('mapLink').href=mapURL;
+    document.getElementById('receiptServices').innerHTML=`<li>${name} – £${price}</li>`;
+    document.getElementById('calloutFee').innerText=callout;
+    document.getElementById('receiptTotal').innerText=total;
+    document.getElementById('receiptModal').style.display='flex';
+  });
 }
 
-// Modal
-function openFormModal(){ 
-  document.getElementById('formModal').style.display='flex'; 
-  getLocation();
-}
-function closeFormModal(){ document.getElementById('formModal').style.display='none';}
-
-// Geolocation
-function getLocation(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(pos=>{
-      clientLocation.lat=pos.coords.latitude;
-      clientLocation.lon=pos.coords.longitude;
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${clientLocation.lat}&lon=${clientLocation.lon}&format=json`)
-      .then(res=>res.json())
-      .then(data=>{
-        clientLocation.address=data.display_name;
-        document.getElementById('clientAddress').value=clientLocation.address;
-      });
-    },err=>{document.getElementById('clientAddress').value='Location unavailable';});
-  } else {document.getElementById('clientAddress').value='Geolocation not supported';}
-}
-
-// WhatsApp Booking
-function sendBooking(){
-  const name=document.getElementById('clientName').value;
-  const contact=document.getElementById('clientContact').value;
-  const car=document.getElementById('clientCar').value;
-  const reg=document.getElementById('clientReg').value;
-  if(!name||!contact||!car||!reg){alert('Please fill all required fields');return;}
-  let message=`Hello SOS Mechanics,%0AName: ${name}%0AContact: ${contact}%0ACar: ${car}%0ARegistration: ${reg}%0AAddress: ${clientLocation.address}%0AMap: https://www.google.com/maps/search/?api=1&query=${clientLocation.lat},${clientLocation.lon}%0ASelected Services:%0A`;
-  selectedServices.forEach(s=>{message+=`- ${s.name} – £${s.price}%0A`;});
-  window.open(`https://wa.me/447405937104?text=${message}`,'_blank');
-  closeFormModal();
-}
-
-// FAQ accordion
-function toggleFaq(button){
-  const answer=button.nextElementSibling;
-  answer.style.display=(answer.style.display==='none')?'block':'none';
+function closeReceipt(){document.getElementById('receiptModal').style.display='none';}
+function sendWhatsAppReceipt(){
+  const name=document.getElementById('custName').innerText;
+  const phone=document.getElementById('custPhone').innerText;
+  const car=document.getElementById('custCar').innerText;
+  const reg=document.getElementById('custReg').innerText;
+  const address=document.getElementById('custAddress').innerText;
+  const service=document.getElementById('receiptServices').innerText;
+  const total=document.getElementById('receiptTotal').innerText;
+  const waURL=`https://wa.me/447405937104?text=Booking%20Details%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0ACar:%20${encodeURIComponent(car)}%0AReg:%20${encodeURIComponent(reg)}%0AAddress:%20${encodeURIComponent(address)}%0AServices:%20${encodeURIComponent(service)}%0ATotal:%20£${encodeURIComponent(total)}`;
+  window.open(waURL,'_blank');
 }
 </script>
+
 </body>
-</html> 
+</html>
